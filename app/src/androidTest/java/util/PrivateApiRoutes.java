@@ -8,6 +8,6 @@ import retrofit.http.Path;
 
 public interface PrivateApiRoutes {
 
-    @PATCH("/products/{product_id}/buy")
-    void patchProductBuy(@Path("product_id") long productId, Callback<Response> callback);
+//    @PATCH("/products/{product_id}/buy")
+//    void patchProductBuy(@Path("product_id") long productId, Callback<Response> callback);
 }

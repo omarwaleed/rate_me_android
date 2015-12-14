@@ -3,8 +3,7 @@ package util;
 
 import java.util.List;
 
-import eg.edu.guc.android.eshop.model.Product;
-import eg.edu.guc.android.eshop.model.User;
+import model.*;
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -15,8 +14,8 @@ public interface PublicApiRoutes {
 
     @POST("/sessions")
     @FormUrlEncoded
-    void login(@Field("session[email]") String email, @Field("session[password]") String password,
+    void login(@Field("params[username]") String username, @Field("params[password]") String password,
                Callback<User> callback);
     @GET("/products")
-    void getProducts(Callback<List<Product>> callback);
+    void getPosts(Callback<List<Post>> callback);
 }

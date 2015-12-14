@@ -12,7 +12,7 @@ import retrofit.RestAdapter.LogLevel;
 import retrofit.converter.GsonConverter;
 
 public class ApiRouter {
-	private static final String API_BASE_URL = "https://eshop-28-13527-omarwaleed.c9users.io/api";
+	private static final String API_BASE_URL = "https://rate-me-omarwaleed.c9users.io/";
 
 	private static PublicApiRoutes publicRouter;
 	private static PrivateApiRoutes privateRouter;
