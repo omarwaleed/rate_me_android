@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"
-                android:hint="Email/Username"
+                android:hint="Username"
                 android:layout_marginBottom="20px"/>
             <EditText
                 android:id="@+id/login_password"
