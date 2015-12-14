@@ -14,7 +14,7 @@ public interface PublicApiRoutes {
 
     @POST("/api/session/create")
     @FormUrlEncoded
-    void login(@Field("params[username]") String username, @Field("params[password]") String password,
+    void login(@Field("params[new_session][username]") String username, @Field("params[new_session][password]") String password,
                Callback<User> callback);
     @GET("/api/post/index")
     void getPosts(Callback<List<Post>> callback);

@@ -1,5 +1,6 @@
 package com.example.menrit.rate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +13,17 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.menrit.rate.model.User;
+import com.example.menrit.rate.util.ApiRouter;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 public class LoginActivity extends AppCompatActivity {
+
+    User current_user;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +69,33 @@ public class LoginActivity extends AppCompatActivity {
         if (((EditText)findViewById(R.id.username_email)).getText().toString().equals("") ||
                 ((EditText)findViewById(R.id.login_password)).getText().toString().equals(""))
         {
+            System.out.println("========================");
             System.out.println("Inside empty");
+            System.out.println("========================");
             Toast.makeText(this, "You didn't enter any credentials", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            System.out.println("Inside New intent");
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            ApiRouter.withoutToken().login(((EditText) findViewById(R.id.username_email)).getText().toString(),
+                    ((EditText) findViewById(R.id.login_password)).getText().toString(),
+                    new Callback<User>() {
+                        @Override
+                        public void success(User user, Response response) {
+                            System.out.println("========================");
+                            System.out.println("Inside New intent");
+                            System.out.println("========================");
+                            Intent intent = new Intent(context, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Toast.makeText(context, "Wrong Credintials", Toast.LENGTH_SHORT);
+                        }
+                    }
+            );
+
         }
     }
 }

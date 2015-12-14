@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.example.menrit.rate.model.*;
 import com.example.menrit.rate.util.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit.Callback;
@@ -56,9 +58,13 @@ public class MainActivity extends AppCompatActivity {
 //        startProgress();
         ApiRouter.withoutToken().getPosts(new Callback<List<Post>>() {
             @Override
-            public void success(List<Post> products, Response response) {
-                postsAdapter.addAll(products);
+            public void success(List<Post> posts, Response response) {
+                System.out.println("-------------");
+                System.out.println(posts.get(0).getName());
+                System.out.println("-------------");
+//                postsAdapter.addAll(posts);
 //                stopProgress();
+                postsAdapter.addAll(posts);
             }
 
             @Override
@@ -67,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT);
             }
         });
+    }
+    public static ArrayList<String> getPostNames(List<Post> theList)
+    {
+        ArrayList<String> toReturn = new ArrayList<String>();
+
+        for (int i = 0; i < theList.size(); i++)
+        {
+            toReturn.add(theList.get(i).getName());
+        }
+
+        return toReturn;
     }
 
     public void OnClickButtonSearch() {
