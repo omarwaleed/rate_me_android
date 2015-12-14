@@ -1,4 +1,4 @@
-package model;
+package com.example.menrit.rate.model;
 
 /**
  * Created by Omar Waleed on 14-Dec-15.

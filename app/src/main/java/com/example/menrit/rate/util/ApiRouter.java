@@ -1,4 +1,4 @@
-package util;
+package com.example.menrit.rate.util;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

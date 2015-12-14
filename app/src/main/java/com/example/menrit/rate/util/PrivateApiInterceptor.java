@@ -1,4 +1,4 @@
-package util;
+package com.example.menrit.rate.util;
 
 import retrofit.RequestInterceptor;
 

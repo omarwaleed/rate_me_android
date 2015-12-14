@@ -1,10 +1,5 @@
-package util;
+package com.example.menrit.rate.util;
 
-
-import retrofit.Callback;
-import retrofit.client.Response;
-import retrofit.http.PATCH;
-import retrofit.http.Path;
 
 public interface PrivateApiRoutes {
 

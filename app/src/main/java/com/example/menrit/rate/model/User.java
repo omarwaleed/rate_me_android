@@ -1,4 +1,4 @@
-package model;
+package com.example.menrit.rate.model;
 
 import java.util.Date;
 

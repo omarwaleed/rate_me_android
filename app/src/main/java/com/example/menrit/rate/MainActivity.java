@@ -1,5 +1,6 @@
 package com.example.menrit.rate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,13 +8,29 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.menrit.rate.model.*;
+import com.example.menrit.rate.util.*;
+
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     private static Button button_search;
     private static Button button_Post;
+
+    Context context = this;
+
+    ArrayAdapter<Post> postsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +49,24 @@ public class MainActivity extends AppCompatActivity {
         });
         OnClickButtonSearch();
         OnClickButtonPost();
+
+        ListView all_posts = (ListView) findViewById(R.id.postsList);
+        postsAdapter = new ArrayAdapter<Post>(this, 0);
+
+//        startProgress();
+        ApiRouter.withoutToken().getPosts(new Callback<List<Post>>() {
+            @Override
+            public void success(List<Post> products, Response response) {
+                postsAdapter.addAll(products);
+//                stopProgress();
+            }
+
+            @Override
+            public void failure(RetrofitError e) {
+                //displayError(e);
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT);
+            }
+        });
     }
 
     public void OnClickButtonSearch() {
