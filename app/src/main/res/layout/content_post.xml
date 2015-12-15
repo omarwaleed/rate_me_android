@@ -42,15 +42,19 @@
             android:layout_weight="0.3"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="30px"
+        android:id="@+id/postName"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="30px"
+        android:id="@+id/postGenre"/>
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:weightSum="1"
-        android:layout_above="@+id/commentbtn"
-        android:id="@+id/linearLayout">
-
-    </LinearLayout>
+        android:id="@+id/postImage"/>
 
 </LinearLayout>

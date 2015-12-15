@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
@@ -35,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
 //    ArrayAdapter<Post> postsAdapter;
 
-    static ListAdapter postsAdapter;
+    ListAdapter postsAdapter;
+    List<Post> retrieved = new ArrayList<Post>();
+    ListView all_posts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         OnClickButtonSearch();
         OnClickButtonPost();
 
-        ListView all_posts = (ListView) findViewById(R.id.postsList);
+        all_posts = (ListView) findViewById(R.id.postsList);
 //        postsAdapter = new ArrayAdapter<Post>(this, android.R.layout.simple_expandable_list_item_1, posts);
 
 //        startProgress();
@@ -69,9 +72,26 @@ public class MainActivity extends AppCompatActivity {
 //                postsAdapter.addAll(posts);
 //                stopProgress();
 //                postsAdapter.addAll(posts);
-                postsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_expandable_list_item_1, getPostNames(posts));
-            }
+                retrieved.addAll(posts);
+                System.out.println(getPostNames(retrieved));
+                System.out.println("-------------====");
+//                postsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_expandable_list_item_1, getPostNames(posts));
+                postsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_expandable_list_item_1, getPostNames(retrieved));
+                all_posts.setAdapter(postsAdapter);
 
+                all_posts.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent toPost = new Intent(context, PostActivity.class);
+                        toPost.putExtra("name", retrieved.get(position).getName());
+                        toPost.putExtra("genre", retrieved.get(position).getGenre());
+                        toPost.putExtra("picture", retrieved.get(position).getPicture());
+                        startActivity(toPost);
+//                        finish();
+                    }
+                });
+            }
 
             @Override
             public void failure(RetrofitError e) {
@@ -79,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
-        System.out.println("=========== post adapter is "+(postsAdapter == null));
-        all_posts.setAdapter(postsAdapter);
+//        postsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_expandable_list_item_1, getPostNames(retrieved));
+//        System.out.println("=========== post adapter is "+(postsAdapter == null));
+//        all_posts.setAdapter(postsAdapter);
     }
+
     public static ArrayList<String> getPostNames(List<Post> theList)
     {
         ArrayList<String> toReturn = new ArrayList<String>();
