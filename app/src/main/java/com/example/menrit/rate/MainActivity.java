@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     Context context = this;
 
-    ArrayAdapter<Post> postsAdapter;
+//    ArrayAdapter<Post> postsAdapter;
+
+    static ListAdapter postsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         OnClickButtonPost();
 
         ListView all_posts = (ListView) findViewById(R.id.postsList);
-        postsAdapter = new ArrayAdapter<Post>(this, 0);
+//        postsAdapter = new ArrayAdapter<Post>(this, android.R.layout.simple_expandable_list_item_1, posts);
 
 //        startProgress();
         ApiRouter.withoutToken().getPosts(new Callback<List<Post>>() {
@@ -61,18 +64,23 @@ public class MainActivity extends AppCompatActivity {
             public void success(List<Post> posts, Response response) {
                 System.out.println("-------------");
                 System.out.println(posts.get(0).getName());
+                System.out.println(getPostNames(posts));
                 System.out.println("-------------");
 //                postsAdapter.addAll(posts);
 //                stopProgress();
-                postsAdapter.addAll(posts);
+//                postsAdapter.addAll(posts);
+                postsAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_expandable_list_item_1, getPostNames(posts));
             }
+
 
             @Override
             public void failure(RetrofitError e) {
                 //displayError(e);
-                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT);
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
+        System.out.println("=========== post adapter is "+(postsAdapter == null));
+        all_posts.setAdapter(postsAdapter);
     }
     public static ArrayList<String> getPostNames(List<Post> theList)
     {

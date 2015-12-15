@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void failure(RetrofitError error) {
-                            Toast.makeText(context, "Wrong Credintials", Toast.LENGTH_SHORT);
+                            Toast.makeText(context, "Wrong Credentials", Toast.LENGTH_SHORT);
                         }
                     }
             );
