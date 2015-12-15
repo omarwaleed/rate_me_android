@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.menrit.rate.model.*;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     ListAdapter postsAdapter;
     List<Post> retrieved = new ArrayList<Post>();
     ListView all_posts;
+    TextView searchText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         });
         OnClickButtonSearch();
         OnClickButtonPost();
+
+        searchText = (TextView) findViewById(R.id.searchText);
 
         all_posts = (ListView) findViewById(R.id.postsList);
 //        postsAdapter = new ArrayAdapter<Post>(this, android.R.layout.simple_expandable_list_item_1, posts);
@@ -122,8 +126,22 @@ public class MainActivity extends AppCompatActivity {
         button_search.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent("com.example.menrit.rate.PostActivity");
-                        startActivity(intent);
+//                        Intent intent = new Intent("com.example.menrit.rate.PostActivity");
+//                        startActivity(intent);
+                        ArrayList<Post> results = new ArrayList<Post>();
+                        String content = searchText.getText().toString();
+                        for (int i = 0; i < retrieved.size(); i++)
+                        {
+                            if (retrieved.get(i).getName().toLowerCase().contains(content.toLowerCase()))
+                            {
+                                results.add(retrieved.get(i));
+                            }
+                        }
+
+                        Intent toSearch = new Intent(context, SearchActivity.class);
+                        toSearch.putExtra("results", results);
+                        startActivity(toSearch);
+                        finish();
                     }
 
                 }
@@ -135,7 +153,8 @@ public class MainActivity extends AppCompatActivity {
         button_Post.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
-                        Intent intent=new Intent("com.example.menrit.rate.PostActivity");
+//                        Intent intent=new Intent("com.example.menrit.rate.PostActivity");
+                        Intent intent = new Intent(context, NewPostActivity.class);
                         startActivity(intent);
                     }
 

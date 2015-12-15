@@ -1,9 +1,11 @@
 package com.example.menrit.rate.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Omar Waleed on 14-Dec-15.
  */
-public class Post {
+public class Post implements Serializable{
 
     private long id;
     private String name;

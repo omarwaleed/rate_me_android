@@ -17,4 +17,7 @@ public interface PublicApiRoutes {
     void login(@Field("new_session[username]") String username, @Field("new_session[password]") String password,Callback<User> callback);
     @GET("/api/post/index")
     void getPosts(Callback<List<Post>> callback);
+    @POST("/api/post/create")
+    @FormUrlEncoded
+    void newPost(@Field("new_post[name]") String name, @Field("new_post[type]") String type, Callback<Post> callback);
 }

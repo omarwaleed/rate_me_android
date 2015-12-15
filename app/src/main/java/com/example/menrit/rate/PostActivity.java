@@ -36,9 +36,11 @@ public class PostActivity extends AppCompatActivity {
         genreText = (TextView) findViewById(R.id.postGenre);
         postImage = (ImageView) findViewById(R.id.postImage);
 
-        nameText.setText(getIntent().getExtras().getString("name"));
-        genreText.setText(getIntent().getExtras().getString("genre"));
-
+//        nameText.setText(getIntent().getExtras().getString("name"));
+//        System.out.println("================ extra "+getIntent().getStringExtra("name"));
+        nameText.setText(getIntent().getStringExtra("name"));
+//        genreText.setText(getIntent().getExtras().getString("genre"));
+        genreText.setText(getIntent().getStringExtra("genre"));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

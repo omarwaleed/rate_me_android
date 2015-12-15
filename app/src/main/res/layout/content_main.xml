@@ -40,7 +40,7 @@
             <EditText
                 android:layout_width="254dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText"
+                android:id="@+id/searchText"
                 android:hint="Search by username" />
 
             <Button
@@ -48,7 +48,6 @@
                 android:layout_height="36dp"
                 android:text="Search"
                 android:id="@+id/searchbtn"
-
             />
         </LinearLayout>
         <LinearLayout
