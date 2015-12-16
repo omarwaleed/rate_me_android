@@ -26,7 +26,7 @@
             android:text="My Profile"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.06"
+
             android:textSize="30dp"
             android:textAlignment="center" />
 
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="120px"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.11">
+            >
 
             <EditText
                 android:layout_width="254dp"

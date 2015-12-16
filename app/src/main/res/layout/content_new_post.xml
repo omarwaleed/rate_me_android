@@ -12,4 +12,36 @@
     tools:context="com.example.menrit.rate.NewPostActivity"
     tools:showIn="@layout/activity_new_post">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Post Name"
+        android:textSize="30dp"
+        android:id="@+id/posNameText"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newPostName"
+        android:layout_below="@+id/posNameText"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Genre"
+        android:textSize="30dp"
+        android:id="@+id/postGenreText"
+        android:layout_below="@+id/newPostName"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newPostGenre"
+        android:layout_below="@id/postGenreText"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newPostGenre"
+        android:text="Submit"
+        android:textSize="25dp"
+        android:background="#3080ee"
+        android:onClick="submitNewPost"/>
+
 </RelativeLayout>

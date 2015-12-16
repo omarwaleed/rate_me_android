@@ -1,6 +1,7 @@
 package com.example.menrit.rate.util;
 
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.menrit.rate.model.*;
@@ -19,5 +20,8 @@ public interface PublicApiRoutes {
     void getPosts(Callback<List<Post>> callback);
     @POST("/api/post/create")
     @FormUrlEncoded
-    void newPost(@Field("new_post[name]") String name, @Field("new_post[type]") String type, Callback<Post> callback);
+    void newPost(@Field("new_post[name]") String name, @Field("new_post[genre]") String type, Callback<Post> callback);
+    @POST("/api/session/create_user")
+    @FormUrlEncoded
+    void newUser(@Field("nu[username]") String username,@Field("nu[email]") String email,@Field("nu[password]") String password,@Field("nu[gender]") String gender, Callback<User> callback);
 }
