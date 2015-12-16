@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"
-                android:hint="Email/Username"
+                android:hint="Username"
                 android:layout_marginBottom="20px"/>
             <EditText
                 android:id="@+id/login_password"
@@ -44,6 +44,12 @@
                 android:onClick="SignIn"
                 android:layout_marginBottom="20px"
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="150px"
+                android:text="Create Account"
+                android:id="@+id/createAccountButton"
+                android:onClick="register"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
